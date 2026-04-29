@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Expose VERCEL_PROJECT_PRODUCTION_URL to client-side code
   env: {
     NEXT_PUBLIC_VERCEL_PRODUCTION_URL:
       process.env.VERCEL_PROJECT_PRODUCTION_URL,
@@ -32,13 +31,6 @@ const nextConfig: NextConfig = {
   },
   devIndicators: false,
   reactCompiler: true,
-  ...(process.env.DISABLE_TURBOPACK_ROOT
-    ? {}
-    : {
-        turbopack: {
-          root: "/monorepo/packages/service.miniapp-generator/",
-        },
-      }),
 };
 
 export default nextConfig;

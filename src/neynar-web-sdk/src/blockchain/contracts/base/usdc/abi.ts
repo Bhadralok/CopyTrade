@@ -1,5 +1,3 @@
-import type { Abi } from "abitype";
-
 export const CONTRACT_ABI = [
   {
     type: "event",
