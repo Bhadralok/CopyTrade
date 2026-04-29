@@ -173,10 +173,10 @@ export function ExperimentalTransferUsdcCard({
   const recipientUser = recipientUserByFid || recipientUsersByAddress?.[0];
 
   // Convert balance from wei to human-readable format
-  const balance =
-    balanceData && decimalsData
-      ? parseFloat(formatUnits(balanceData as bigint, decimalsData))
-      : undefined;
+  // const balance =
+  //   balanceData && decimalsData
+  //     ? parseFloat(formatUnits(balanceData as bigint, decimalsData))
+  //     : undefined;
 
   // Local state for form inputs
   const [amount, setAmount] = useState(
