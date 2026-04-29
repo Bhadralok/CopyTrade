@@ -1,0 +1,334 @@
+@import "@neynar/ui/styles";
+
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-sketch: var(--font-caveat), var(--font-patrick-hand), cursive;
+
+  --primary: #c8a84b;
+  --accent: #c8a84b;
+  --background: #0d0d0a;
+  --surface: #131310;
+  --foreground: #ffffff;
+  --foreground-muted: rgba(255, 255, 255, 0.35);
+  --success: #4ade80;
+  --error: #f87171;
+
+  /* Sketch effect variables */
+  --sketch-roughness: 2px;
+  --sketch-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+  --sketch-border: 2px solid currentColor;
+}
+
+.dark {
+  --primary: #c8a84b;
+  --accent: #c8a84b;
+  --background: #0d0d0a;
+  --surface: #131310;
+  --foreground: #ffffff;
+  --foreground-muted: rgba(255, 255, 255, 0.35);
+  --success: #4ade80;
+  --error: #f87171;
+}
+
+/* ============================================
+   HAND-DRAWN SKETCH EFFECT SYSTEM
+   ============================================ */
+
+/* Base sketch effect - subtle hand-drawn look */
+.sketch {
+  position: relative;
+  filter: url("#sketchy");
+  transform: rotate(0deg); /* Force GPU acceleration */
+}
+
+/* Wobbly box - hand-drawn container with rough edges */
+.sketch-wobbly {
+  position: relative;
+  border: 2px solid currentColor;
+  filter: url("#sketchy");
+  background: white;
+  color: black;
+}
+
+/* Sketch borders - wobbly hand-drawn borders */
+.sketch-border {
+  border: var(--sketch-border);
+  border-radius: 0;
+  box-shadow: var(--sketch-shadow);
+  filter: url("#rough-border");
+}
+
+.sketch-border-heavy {
+  border: 3px solid currentColor;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  filter: url("#rough-border");
+}
+
+/* Sketch text - hand-written font */
+.sketch-text {
+  font-family: var(--font-sketch);
+  letter-spacing: 0.02em;
+  color: black;
+  filter: url("#sketchy");
+}
+
+/* Sketch button - interactive sketchy element */
+.sketch-button {
+  font-family: var(--font-sketch);
+  border: 2.5px solid currentColor;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+  transition: all 0.1s ease;
+  position: relative;
+  background: white;
+  color: black;
+  filter: url("#sketchy");
+}
+
+.sketch-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+}
+
+.sketch-button:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
+}
+
+/* Sketch card - container with sketchy appearance */
+.sketch-card {
+  position: relative;
+  border: 2.5px solid rgba(0, 0, 0, 0.8);
+  border-radius: 0;
+  background: white;
+  color: black;
+  box-shadow:
+    3px 3px 0px rgba(0, 0, 0, 0.1),
+    inset 1px 1px 0px rgba(255, 255, 255, 0.5);
+  filter: url("#sketchy");
+}
+
+.sketch-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+/* Sketch input - form elements */
+.sketch-input {
+  font-family: var(--font-sketch);
+  border: 2.5px solid rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+  background: white;
+  color: black;
+  padding: 0.5rem;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+  filter: url("#sketchy");
+}
+
+.sketch-input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.9);
+  box-shadow:
+    inset 1px 1px 3px rgba(0, 0, 0, 0.1),
+    2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Sketch paper - background texture */
+.sketch-paper {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-color: #fafafa;
+}
+
+/* Sketch border - hand-drawn border for layout containers */
+.sketch-border {
+  border: 2.5px solid rgba(0, 0, 0, 0.6);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.sketch-border-b {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.sketch-border-t {
+  border-top: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+/* Sketch underline - hand-drawn underline effect */
+.sketch-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.sketch-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(1.02) translateY(1px);
+  opacity: 0.7;
+}
+
+/* Sketch highlight - hand-drawn highlight marker effect */
+.sketch-highlight {
+  position: relative;
+  display: inline;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 0, 0.3),
+    rgba(255, 255, 0, 0.4),
+    rgba(255, 255, 0, 0.3)
+  );
+  padding: 0.1em 0.2em;
+  box-shadow:
+    2px 0 0 rgba(255, 255, 0, 0.3),
+    -2px 0 0 rgba(255, 255, 0, 0.3);
+}
+
+/* Sketch scribble - underline scribble effect */
+.sketch-scribble {
+  position: relative;
+}
+
+.sketch-scribble::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  bottom: -4px;
+  width: calc(100% + 4px);
+  height: 3px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0px,
+    currentColor 3px,
+    transparent 3px,
+    transparent 6px
+  );
+  opacity: 0.6;
+}
+
+/* Animation for sketch elements */
+@keyframes sketch-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.sketch-animate {
+  animation: sketch-draw 1s ease-out forwards;
+}
+
+/* Utility classes for different sketch intensities */
+.sketch-light {
+  filter: url("#sketchy") contrast(1.02) brightness(0.99);
+}
+
+.sketch-medium {
+  filter: url("#sketchy-medium") contrast(1.05) brightness(0.98);
+}
+
+.sketch-heavy {
+  filter: url("#sketchy-heavy") contrast(1.1) brightness(0.95) saturate(0.9);
+}
+
+/* Pencil texture effect */
+.sketch-pencil {
+  filter: url("#pencil-sketch");
+}
+
+/* ============================================
+   COPYTRADE APP ANIMATIONS
+   ============================================ */
+
+@keyframes ct-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ct-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes ct-slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ct-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+@keyframes ct-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes ct-number-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+@keyframes ct-bounce-in {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes ct-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0px 0px rgba(200, 168, 75, 0); }
+  50%       { box-shadow: 0 0 10px 2px rgba(200, 168, 75, 0.2); }
+}
+
+@keyframes ct-tab-underline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes ct-trade-flash {
+  0%   { background-color: rgba(200, 168, 75, 0.10); }
+  50%  { background-color: rgba(200, 168, 75, 0.20); }
+  100% { background-color: transparent; }
+}
+
+.ct-fade-up   { animation: ct-fade-up 0.35s ease both; }
+.ct-fade-in   { animation: ct-fade-in 0.25s ease both; }
+.ct-bounce-in { animation: ct-bounce-in 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+.ct-stagger-1 { animation-delay: 0.05s; }
+.ct-stagger-2 { animation-delay: 0.10s; }
+.ct-stagger-3 { animation-delay: 0.15s; }
+.ct-stagger-4 { animation-delay: 0.20s; }
+.ct-stagger-5 { animation-delay: 0.25s; }
+.ct-stagger-6 { animation-delay: 0.30s; }
+
+.ct-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 400px 100%;
+  animation: ct-shimmer 1.4s infinite linear;
+}
+
+.ct-number-pop { animation: ct-number-pop 0.5s ease; }
+.ct-glow-pulse  { animation: ct-glow-pulse 2.5s ease-in-out infinite; }
+.ct-trade-flash { animation: ct-trade-flash 1.2s ease forwards; }

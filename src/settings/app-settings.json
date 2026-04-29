@@ -1,0 +1,13 @@
+{
+  "name": "CopyTrade",
+  "shortName": "CopyTrade",
+  "subtitle": "Copy top trader moves",
+  "description": "Copy trades from top Farcaster traders with high PnL. Follow the best, mirror their moves, and grow your portfolio on Base and Solana.",
+  "shortDescription": "Mirror trades from top Farcaster traders and grow your portfolio",
+  "primaryCategory": "finance",
+  "tags": ["copy-trading", "farcaster", "solana", "base", "portfolio"],
+  "splashBackgroundColor": "#1a1a2e",
+  "tagline": "Trade like the pros",
+  "requiredChains": ["eip155:8453", "eip155:1"],
+  "shareButtonTitle": "Copy My Trades"
+}
