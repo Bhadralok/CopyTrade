@@ -1387,4 +1387,4 @@ export const CONTRACT_ABI = [
     ],
     stateMutability: "pure",
   },
-] as const satisfies Abi;
+] as const;

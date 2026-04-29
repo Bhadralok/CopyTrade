@@ -175,7 +175,7 @@ export function ExperimentalTransferUsdcCard({
   // Convert balance from wei to human-readable format
   const balance =
     balanceData && decimalsData
-      ? parseFloat(formatUnits(balanceData, decimalsData))
+      ? parseFloat(formatUnits(BigInt(balanceData as string), decimalsData))
       : undefined;
 
   // Local state for form inputs
